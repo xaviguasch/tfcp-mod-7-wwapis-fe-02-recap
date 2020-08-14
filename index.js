@@ -128,6 +128,7 @@ async function getPost() {
   const html = `
   <h3>${posts[0].title}</h3>
       <h5>${users.filter((user) => user.id === posts[0].userId)[0].name}</h5>
+       <p>${users.filter((user) => user.id === posts[0].userId)[0].company.name}</p>
   <p>${posts[0].body}</p>
 `
 
