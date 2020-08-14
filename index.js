@@ -29,4 +29,22 @@ userForm.addEventListener('submit', function (e) {
   }
 
   // Write the Fetch statement using https://httpbin.org/post along with the options. Then console log the JSON response.
+
+  async function sendData() {
+    try {
+      const response = await fetch('https://httpbin.org/post', options)
+      const resJSON = await response.json()
+      console.log(resJSON.form)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  sendData()
 })
+
+///////////////////////////////////////////////////////////////////////////
+
+// UPLOADING A FILE USING FETCH
+
+// Create a variable for the form element. Then create an event listener for submit. Prevent the default behavior. Post a FormData object to https://httpbin.org/post, then console log the JSON response.
