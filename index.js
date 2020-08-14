@@ -75,35 +75,56 @@
 //   }
 // }
 
+///////////////////////////////////////////////////////////////////////////
+
 //  UPLOADING MULTIPLE FILES
 
-const uploadForm = document.getElementById('uploadForm')
+// const uploadForm = document.getElementById('uploadForm')
 
-uploadForm.addEventListener('submit', function (e) {
-  e.preventDefault()
+// uploadForm.addEventListener('submit', function (e) {
+//   e.preventDefault()
 
-  uploadFile(this)
-})
+//   uploadFile(this)
+// })
 
-async function uploadFile(data) {
-  const formData = new FormData()
-  const files = data.querySelector('input[type="file"]').files
+// async function uploadFile(data) {
+//   const formData = new FormData()
+//   const files = data.querySelector('input[type="file"]').files
 
-  for (let i = 0; i < files.length; i++) {
-    formData.append(`fileInput_${i}`, files[i])
-  }
+//   for (let i = 0; i < files.length; i++) {
+//     formData.append(`fileInput_${i}`, files[i])
+//   }
 
-  const options = {
-    method: 'POST',
-    body: formData,
-  }
+//   const options = {
+//     method: 'POST',
+//     body: formData,
+//   }
 
-  const uploadPromise = await fetch('https://httpbin.org/post', options)
+//   const uploadPromise = await fetch('https://httpbin.org/post', options)
 
-  if (uploadPromise.ok) {
-    const uploadResp = await uploadPromise.json()
-    console.log(uploadResp.files)
-  } else {
-    console.error(uploadPromise.status)
-  }
+//   if (uploadPromise.ok) {
+//     const uploadResp = await uploadPromise.json()
+//     console.log(uploadResp.files)
+//   } else {
+//     console.error(uploadPromise.status)
+//   }
+// }
+
+///////////////////////////////////////////////////////////////////////////
+
+// WORKING WITH MULTIPLE FETCH REQUESTS
+
+async function getPost() {
+  const postPromise = await fetch('https://jsonplaceholder.typicode.com/posts')
+
+  const posts = await postPromise.json()
+
+  const html = `
+  <h3>${posts[0].title}</h3>
+  <p>${posts[0].body}</p>
+`
+
+  document.body.innerHTML = html
 }
+
+getPost()
